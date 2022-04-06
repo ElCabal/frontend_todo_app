@@ -1,12 +1,11 @@
 import React from "react";
 import "../index.css";
 import { VscAdd } from "react-icons/vsc";
-import { useState } from "react";
+
 
 const NoteTask = () => {
-  const [task, setTask] = useState("");
   return (
-    <div className="flex justify-between gap-5 md:text-2xl 	">
+    <form className="flex justify-between gap-5 md:text-2xl 	">
       <input
         type="text"
         placeholder="Agrega una tarea"
@@ -19,7 +18,7 @@ const NoteTask = () => {
       >
         <VscAdd className=" text-white font-bold text-2xl" />
       </button>
-    </div>
+    </form>
   );
 };
 
