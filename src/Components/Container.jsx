@@ -41,13 +41,29 @@ const Container = () => {
             item._id === updateId ? { ...item, task: updateInput } : item
           )
         );
+        setUpdateId("");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const addTask = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://apirest-to-do-app.herokuapp.com/api/tasks/", {
+        task: task,
+      })
+      .then((res) => {
+        window.location.reload(false);
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <div className="  flex flex-col bg-white shadow-lg rounded-xl  w-full max-w-4xl px-8 py-8 gap-8	font-Nunito">
-      <form className="flex justify-between gap-5 md:text-2xl 	">
+      <form
+        className="flex justify-between gap-5 md:text-2xl 	"
+        onSubmit={addTask}
+      >
         <input
           type="text"
           placeholder="Agrega una tarea"
