@@ -5,6 +5,7 @@ import axios from "axios";
 import "../index.css";
 import Task from "./Task";
 import { useEffect } from "react";
+import { Swal } from "sweetalert2";
 
 const Container = () => {
   const [task, setTask] = useState("");
@@ -48,14 +49,18 @@ const Container = () => {
 
   const addTask = (e) => {
     e.preventDefault();
-    axios
-      .post("https://apirest-to-do-app.herokuapp.com/api/tasks/", {
-        task: task,
-      })
-      .then((res) => {
-        window.location.reload(false);
-      })
-      .catch((error) => console.log(error));
+    if (task === "") {
+      return alert("Por favor introduce una tarea");
+    } else {
+      axios
+        .post("https://apirest-to-do-app.herokuapp.com/api/tasks/", {
+          task: task,
+        })
+        .then((res) => {
+          window.location.reload(false);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
